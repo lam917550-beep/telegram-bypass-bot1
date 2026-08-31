@@ -1,7 +1,7 @@
 import telebot
 
 # --- CẤU HÌNH ---
-TOKEN = '8915837453:AAHG_PpY_PCLf7rSwyx2_JdSxv8Qs1qFLtQ'
+TOKEN = 8915837453:AAHG_PpY_PCLf7rSwyx2_JdSxv8Qs1qFLtQ
 ADMIN_ID = 8218051610
 
 bot = telebot.TeleBot(TOKEN)
