@@ -1,7 +1,10 @@
 import telebot
+import os
+from flask import Flask
+import threading
 
-# --- CẤU HÌNH ---
-TOKEN = '8915837453:AAHG_PpY_PCLf7rSwyx2_JdSxv8Qs1qFLtQ'
+# Lấy thông tin an toàn từ môi trường Render
+TOKEN = '8915837453:AAH0IwRjIxxJJ0IATlmuQi4-H4HBTDRx8k'
 ADMIN_ID = 8218051610
 
 bot = telebot.TeleBot(TOKEN)
