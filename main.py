@@ -8,8 +8,15 @@ import telebot
 from flask import Flask
 from playwright.async_api import async_playwright
 
-# ================= CẤU HÌNH HỆ THỐNG =================
+# ================= CẤU HÌNH HỆ THỐNG & BẢO MẬT TOKEN =================
 TOKEN = os.getenv('TOKEN', 'YOUR_BOT_TOKEN')
+
+print(f"--- ĐANG KIỂM TRA TOKEN ---")
+print(f"Giá trị TOKEN hiện tại: {TOKEN[:5]}***" if TOKEN != 'YOUR_BOT_TOKEN' else "Chưa cấu hình TOKEN")
+
+if not TOKEN or TOKEN == 'YOUR_BOT_TOKEN':
+    raise ValueError("❌ LỖI NGHIÊM TRỌNG: Biến môi trường 'TOKEN' chưa được cấu hình trên Render hoặc đang để giá trị mặc định!")
+
 ADMIN_ID = int(os.getenv('ADMIN_ID', '123456789'))
 BOT_USERNAME = os.getenv('BOT_USERNAME', 'BypassVuotNhanhCom_bot')
 bot = telebot.TeleBot(TOKEN)
@@ -83,7 +90,7 @@ async def run_automation(url):
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
         )
         
-        # Script chống phát hiện bot nguyên bản (Thay thế playwright-stealth)
+        # Script chống phát hiện bot nguyên bản (Khắc phục lỗi import playwright-stealth)
         await context.add_init_script("""
             Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
             window.navigator.chrome = { runtime: {} };
